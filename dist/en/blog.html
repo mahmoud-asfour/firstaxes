@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المدونة | فيرست أكسز للاستشارات الهندسية</title>
+  <meta name="description" content="اقرأ أحدث المقالات والأخبار والنصائح الهندسية من خبراء مكتب فيرست أكسز للاستشارات الهندسية.">
+  <link rel="canonical" href="https://firstaxes.com/blog.html">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon-D-7fdRz4.svg">
+  
+  <style>
+    /* Premium Blog Styles */
+    .blog-hero {
+      background: linear-gradient(135deg, var(--color-navy-900) 0%, var(--color-navy-800) 100%);
+      padding: var(--space-16) 0 var(--space-20);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .blog-hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.15), transparent 50%);
+      pointer-events: none;
+    }
+
+    .blog-hero__title {
+      color: var(--color-white);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      margin-bottom: var(--space-4);
+    }
+
+    .blog-hero__desc {
+      color: var(--color-gray-300);
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .blog-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+      margin-top: -60px;
+      position: relative;
+      z-index: 10;
+      @media(min-width: 992px) {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    /* Featured Post */
+    .featured-post {
+      background: var(--color-white);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(10, 25, 47, 0.08);
+      display: grid;
+      grid-template-columns: 1fr;
+      margin-bottom: var(--space-12);
+      @media(min-width: 768px) {
+        grid-template-columns: 1.2fr 1fr;
+      }
+    }
+
+    .featured-post__img {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      @media(min-width: 768px) { aspect-ratio: auto; height: 100%; }
+    }
+
+    .featured-post__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .featured-post:hover .featured-post__img img {
+      transform: scale(1.05);
+    }
+
+    .featured-post__content {
+      padding: var(--space-8);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .blog-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--color-gold-50);
+      color: var(--color-gold-700);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 20px;
+      margin-bottom: var(--space-4);
+      align-self: flex-start;
+    }
+
+    /* Grid Posts */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+      @media(min-width: 600px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .blog-card {
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--color-gray-200);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(10, 25, 47, 0.05);
+      border-color: var(--color-gold-200);
+    }
+
+    .blog-card__img {
+      aspect-ratio: 16/10;
+      overflow: hidden;
+    }
+
+    .blog-card__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .blog-card:hover .blog-card__img img {
+      transform: scale(1.05);
+    }
+
+    .blog-card__content {
+      padding: var(--space-6);
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 0.85rem;
+      color: var(--color-gray-500);
+      margin-bottom: var(--space-3);
+    }
+
+    .blog-card__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-navy-800);
+      margin-bottom: var(--space-3);
+      line-height: 1.4;
+    }
+
+    .blog-card__title a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .blog-card__title a:hover {
+      color: var(--color-gold-600);
+    }
+
+    .blog-card__desc {
+      color: var(--color-gray-600);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: var(--space-4);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex-grow: 1;
+    }
+
+    /* Sidebar */
+    .blog-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .sidebar-widget {
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      border: 1px solid var(--color-gray-200);
+    }
+
+    .widget-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-navy-800);
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-2);
+      border-bottom: 2px solid var(--color-gold-100);
+      display: inline-block;
+    }
+
+    .category-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .category-list li {
+      margin-bottom: var(--space-2);
+    }
+
+    .category-list a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      background: var(--color-gray-50);
+      border-radius: var(--radius-md);
+      color: var(--color-navy-800);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .category-list a:hover {
+      background: var(--color-gold-50);
+      color: var(--color-gold-600);
+      transform: translateX(-5px);
+    }
+
+    .category-count {
+      background: var(--color-white);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      color: var(--color-gray-500);
+    }
+
+    .popular-post {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--color-gray-100);
+    }
+
+    .popular-post:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .popular-post img {
+      width: 70px;
+      height: 70px;
+      border-radius: var(--radius-md);
+      object-fit: cover;
+    }
+
+    .popular-post h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+      line-height: 1.4;
+    }
+
+    .popular-post h4 a {
+      color: var(--color-navy-800);
+      text-decoration: none;
+    }
+    
+    .popular-post h4 a:hover {
+      color: var(--color-gold-600);
+    }
+
+    /* Newsletter Widget */
+    .newsletter-widget {
+      background: var(--color-navy-800);
+      color: white;
+      border: none;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .newsletter-widget::before {
+      content: '';
+      position: absolute;
+      top: -50px; right: -50px;
+      width: 100px; height: 100px;
+      background: var(--color-gold-500);
+      border-radius: 50%;
+      opacity: 0.2;
+    }
+
+    .newsletter-widget .widget-title {
+      color: white;
+      border-bottom-color: rgba(255,255,255,0.2);
+    }
+
+    .newsletter-form input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: var(--radius-md);
+      border: none;
+      margin-bottom: 10px;
+      font-family: inherit;
+    }
+    
+    .newsletter-form button {
+      width: 100%;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: var(--space-12);
+    }
+    
+    .page-num {
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: var(--color-white);
+      color: var(--color-navy-800);
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--color-gray-200);
+      transition: all 0.2s;
+    }
+    
+    .page-num:hover, .page-num.active {
+      background: var(--color-gold-500);
+      color: white;
+      border-color: var(--color-gold-500);
+    }
+  </style>
+  <script type="module" crossorigin src="../assets/main-BXxW0iLP.js"></script>
+  <link rel="stylesheet" crossorigin href="../assets/main-Bj_9Jegq.css">
+</head>
+<body>
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="/en/" class="header__logo">
+        <span class="logo-text">First<span>Axes</span></span>
+      </a>
+      <nav class="header__nav" id="main-nav">
+        <a href="/en/" class="header__nav-link">Home</a>
+        <a href="/en/about.html" class="header__nav-link">About Us</a>
+        <a href="/en/services.html" class="header__nav-link">Services</a>
+        <a href="/en/projects.html" class="header__nav-link">Projects</a>
+
+        <a href="/en/faq.html" class="header__nav-link">FAQ</a>
+        <a href="/en/blog.html" class="header__nav-link active">Blog</a>
+        <a href="/en/contact.html" class="header__nav-link">Contact Us</a>
+      </nav>
+      <div class="header__actions">
+        <a href="/en/request-consultation.html" class="btn btn-primary btn-sm header__cta">Consultation</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    
+    <!-- ===== BLOG HERO ===== -->
+    <section class="blog-hero">
+      <div class="container reveal">
+        <h1 class="blog-hero__title">المدونة والمقالات الهندسية</h1>
+        <p class="blog-hero__desc">اكتشف أحدث التوجهات، والنصائح المعمارية، والمقالات المتخصصة في أنظمة البناء وإدارة المشاريع.</p>
+      </div>
+    </section>
+
+    <!-- ===== BLOG CONTENT ===== -->
+    <section style="background: var(--color-gray-50); padding-bottom: var(--space-16);">
+      <div class="container">
+        <div class="blog-layout">
+          
+          <!-- Main Area -->
+          <div class="blog-main">
+            <!-- Featured Post -->
+            <article class="featured-post reveal">
+              <div class="featured-post__img">
+                <a href="/en/blog-detail.html">
+                  <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=600&fit=crop" alt="Saudi Building Code">
+                </a>
+              </div>
+              <div class="featured-post__content">
+                <span class="blog-badge">مقال مميز</span>
+                <div class="blog-meta">
+                  <span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:5px; vertical-align:-2px;"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg> 15 مايو 2024</span>
+                  <span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:5px; vertical-align:-2px;"><path d="M2 12h5"/><path d="M17 12h5"/><path d="m7.5 4.2 2 3.5"/><path d="m14.5 16.3 2 3.5"/><path d="m4.2 16.5 3.5-2"/><path d="m16.3 9.5 3.5-2"/><path d="m4.2 7.5 3.5 2"/><path d="m16.3 14.5 3.5 2"/><path d="m7.5 19.8 2-3.5"/><path d="m14.5 7.7 2-3.5"/><circle cx="12" cy="12" r="3"/></svg> أنظمة وتشريعات</span>
+                </div>
+                <h2 style="font-size: 1.75rem; font-weight: 700; color: var(--color-navy-800); margin-bottom: 15px; line-height: 1.3;">
+                  <a href="/en/blog-detail.html" style="text-decoration: none; color: inherit;">أهمية تطبيق Saudi Building Code في المشاريع السكنية</a>
+                </h2>
+                <p style="color: var(--color-gray-600); line-height: 1.7; margin-bottom: 20px;">
+                  تعرف على أبرز فوائد الالتزام بSaudi Building Code وكيف يساهم في رفع جودة الحياة وضمان الاستدامة والأمان للمباني السكنية الحديثة.
+                </p>
+                <a href="/en/blog-detail.html" class="btn btn-outline">اقرأ المقال كاملاً</a>
+              </div>
+            </article>
+
+            <!-- Grid Posts -->
+            <div class="blog-grid reveal">
+              <!-- Card 2 -->
+              <article class="blog-card">
+                <a href="/en/blog-detail.html" class="blog-card__img">
+                  <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop" alt="التصميم المعماري">
+                </a>
+                <div class="blog-card__content">
+                  <div class="blog-meta">
+                    <span style="color: var(--color-gold-600); font-weight: 600;">تصميم معماري</span>
+                    <span>2 أبريل 2024</span>
+                  </div>
+                  <h3 class="blog-card__title">
+                    <a href="/en/blog-detail.html">مستقبل التصميم المعماري التجاري في المملكة</a>
+                  </h3>
+                  <p class="blog-card__desc">مع رؤية 2030، يشهد قطاع التصميم المعماري التجاري تحولات جذرية نحو تبني تصاميم مستدامة وذكية تلبي تطلعات المستقبل.</p>
+                  <a href="/en/blog-detail.html" style="color: var(--color-navy-800); font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px; margin-top: auto;">
+                    اقرأ المزيد <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                  </a>
+                </div>
+              </article>
+
+              <!-- Card 3 -->
+              <article class="blog-card">
+                <a href="/en/blog-detail.html" class="blog-card__img">
+                  <img src="https://images.unsplash.com/photo-1541888086425-d81bb19240f5?w=600&h=400&fit=crop" alt="إدارة المشاريع">
+                </a>
+                <div class="blog-card__content">
+                  <div class="blog-meta">
+                    <span style="color: var(--color-gold-600); font-weight: 600;">إدارة مشاريع</span>
+                    <span>20 مارس 2024</span>
+                  </div>
+                  <h3 class="blog-card__title">
+                    <a href="/en/blog-detail.html">أفضل الممارسات لتقليل تكاليف البناء دون المساس بالجودة</a>
+                  </h3>
+                  <p class="blog-card__desc">استراتيجيات فعالة لإدارة المشاريع الهندسية تضمن تسليم المشروع في وقته المحدد وتقليل الهدر المالي.</p>
+                  <a href="/en/blog-detail.html" style="color: var(--color-navy-800); font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px; margin-top: auto;">
+                    اقرأ المزيد <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                  </a>
+                </div>
+              </article>
+
+              <!-- Card 4 -->
+              <article class="blog-card">
+                <a href="/en/blog-detail.html" class="blog-card__img">
+                  <img src="https://images.unsplash.com/photo-1621293954908-907159247fc8?w=600&h=400&fit=crop" alt="التصميم الداخلي">
+                </a>
+                <div class="blog-card__content">
+                  <div class="blog-meta">
+                    <span style="color: var(--color-gold-600); font-weight: 600;">تصميم داخلي</span>
+                    <span>10 فبراير 2024</span>
+                  </div>
+                  <h3 class="blog-card__title">
+                    <a href="/en/blog-detail.html">كيف تختار الألوان المناسبة لمساحات العمل؟</a>
+                  </h3>
+                  <p class="blog-card__desc">تأثير الألوان على إنتاجية الموظفين وكيفية اختيار لوحة ألوان تعزز النشاط والإبداع في المكاتب.</p>
+                  <a href="/en/blog-detail.html" style="color: var(--color-navy-800); font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px; margin-top: auto;">
+                    اقرأ المزيد <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                  </a>
+                </div>
+              </article>
+
+              <!-- Card 5 -->
+              <article class="blog-card">
+                <a href="/en/blog-detail.html" class="blog-card__img">
+                  <img src="https://images.unsplash.com/photo-1504307651254-35680f356f27?w=600&h=400&fit=crop" alt="الاستدامة">
+                </a>
+                <div class="blog-card__content">
+                  <div class="blog-meta">
+                    <span style="color: var(--color-gold-600); font-weight: 600;">استدامة بيئية</span>
+                    <span>25 يناير 2024</span>
+                  </div>
+                  <h3 class="blog-card__title">
+                    <a href="/en/blog-detail.html">المباني الخضراء: من رفاهية إلى ضرورة حتمية</a>
+                  </h3>
+                  <p class="blog-card__desc">نظرة على تقنيات البناء المستدام وكيف تسهم في توفير الطاقة وحماية البيئة للأجيال القادمة.</p>
+                  <a href="/en/blog-detail.html" style="color: var(--color-navy-800); font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 5px; margin-top: auto;">
+                    اقرأ المزيد <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                  </a>
+                </div>
+              </article>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination reveal">
+              <a href="#" class="page-num active">1</a>
+              <a href="#" class="page-num">2</a>
+              <a href="#" class="page-num">3</a>
+              <a href="#" class="page-num"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></a>
+            </div>
+          </div>
+
+          <!-- Sidebar Area -->
+          <aside class="blog-sidebar reveal">
+            
+            <!-- Search Widget -->
+            <div class="sidebar-widget">
+              <span class="widget-title">ابحث في المدونة</span>
+              <form action="#" style="display: flex; gap: 10px;">
+                <input type="text" placeholder="اكتب كلمة البحث..." style="width: 100%; padding: 10px 15px; border: 1px solid var(--color-gray-200); border-radius: var(--radius-md); font-family: inherit;">
+                <button type="submit" class="btn btn-primary" style="padding: 10px 15px;"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+              </form>
+            </div>
+
+            <!-- Categories Widget -->
+            <div class="sidebar-widget">
+              <span class="widget-title">التصنيفات</span>
+              <ul class="category-list">
+                <li><a href="#">تصميم معماري <span class="category-count">12</span></a></li>
+                <li><a href="#">أنظمة وتشريعات <span class="category-count">8</span></a></li>
+                <li><a href="#">إدارة مشاريع <span class="category-count">15</span></a></li>
+                <li><a href="#">تصميم داخلي <span class="category-count">6</span></a></li>
+                <li><a href="#">استدامة بيئية <span class="category-count">9</span></a></li>
+              </ul>
+            </div>
+
+            <!-- Popular Posts Widget -->
+            <div class="sidebar-widget">
+              <span class="widget-title">الأكثر قراءة</span>
+              
+              <div class="popular-post">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=150&h=150&fit=crop" alt="thumbnail">
+                <div>
+                  <h4><a href="/en/blog-detail.html">مستقبل التصميم المعماري التجاري</a></h4>
+                  <span style="font-size: 0.8rem; color: var(--color-gray-500);">2 أبريل 2024</span>
+                </div>
+              </div>
+              
+              <div class="popular-post">
+                <img src="https://images.unsplash.com/photo-1541888086425-d81bb19240f5?w=150&h=150&fit=crop" alt="thumbnail">
+                <div>
+                  <h4><a href="/en/blog-detail.html">أفضل الممارسات لتقليل تكاليف البناء</a></h4>
+                  <span style="font-size: 0.8rem; color: var(--color-gray-500);">20 مارس 2024</span>
+                </div>
+              </div>
+
+              <div class="popular-post">
+                <img src="https://images.unsplash.com/photo-1621293954908-907159247fc8?w=150&h=150&fit=crop" alt="thumbnail">
+                <div>
+                  <h4><a href="/en/blog-detail.html">كيف تختار الألوان لمساحات العمل؟</a></h4>
+                  <span style="font-size: 0.8rem; color: var(--color-gray-500);">10 فبراير 2024</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Newsletter Widget -->
+            <div class="sidebar-widget newsletter-widget">
+              <span class="widget-title">النشرة البريدية</span>
+              <p style="font-size: 0.9rem; color: var(--color-gray-300); margin-bottom: 15px;">اشترك ليصلك جديد المقالات والأخبار الهندسية مباشرة إلى بريدك.</p>
+              <form class="newsletter-form">
+                <input type="email" placeholder="بريدك الإلكتروني" required>
+                <button type="submit" class="btn btn-primary">اشترك الآن</button>
+              </form>
+            </div>
+
+          </aside>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" id="footer" role="contentinfo">
+    <div class="footer__main">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <span class="logo-text">First<span>Axes</span></span>
+        </div>
+        <p>A certified engineering consultancy in Saudi Arabia. Providing comprehensive engineering solutions from planning and design to final delivery according to the highest standards.</p>
+        <div class="footer__certifications">
+          <div class="cert-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+            Saudi Building Code
+          </div>
+          <div class="cert-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            Certified Engineers
+          </div>
+        </div>
+        <div class="footer__social">
+          <a href="#" target="_blank" rel="noopener" aria-label="تويتر"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="لينكد إن"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="إنستغرام"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h3 class="footer__heading">Services</h3>
+        <div class="footer__links">
+          <a href="/en/service-detail.html">Architectural Design</a>
+          <a href="/en/service-detail.html">Structural Design</a>
+          <a href="/en/service-detail.html">MEP Design</a>
+          <a href="/en/service-detail.html">Engineering Licenses</a>
+          <a href="/en/service-detail.html">Site Supervision</a>
+          <a href="/en/service-detail.html">Project Management</a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h3 class="footer__heading">Quick Links</h3>
+        <div class="footer__links">
+          <a href="/en/about.html">About Us</a>
+          <a href="/en/projects.html">Projects</a>
+
+          <a href="/en/blog.html">Blog</a>
+          <a href="/en/faq.html">FAQ</a>
+          <a href="/en/contact.html">Contact Us</a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h3 class="footer__heading">Get in Touch</h3>
+        <div class="footer__contact-info">
+          <div class="contact-item">
+            <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="contact-text"><strong>Address</strong>الرياض، المملكة العربية السعودية</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div class="contact-text"><strong>Phone</strong><a href="tel:+9665XXXXXXXX" dir="ltr">+966 5X XXX XXXX</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+            <div class="contact-text"><strong>Email</strong><a href="mailto:info@firstaxes.com">info@firstaxes.com</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__bottom-inner">
+        <div class="footer__bottom-copy">© 2024 فيرست أكسز. All Rights Reserved.</div>
+        <div class="footer__bottom-links">
+          <a href="/en/privacy-policy.html">Privacy Policy</a>
+          <a href="/en/terms-conditions.html">Terms & Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== FLOATING CTA ========== -->
+  <div class="floating-cta" id="floating-cta">
+    <a href="https://wa.me/9665XXXXXXXX" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب" id="whatsapp-float">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+268:     </a>
+269:   </div>
+270: 
+271:   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+272:   
+273: </body>
+274: </html>
+
+

@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فيلا سكنية حديثة | فيرست أكسز للاستشارات الهندسية</title>
+  <meta name="description" content="تفاصيل مشروع فيلا سكنية حديثة من تنفيذ وإشراف فيرست أكسز.">
+  <link rel="canonical" href="https://firstaxes.com/project-detail.html">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon-D-7fdRz4.svg">
+  
+  <style>
+    /* Premium Project Detail Styles */
+    .project-hero {
+      position: relative;
+      height: 80vh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&h=1080&fit=crop');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      padding-bottom: var(--space-12);
+    }
+
+    .project-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 25, 47, 0.95) 0%, rgba(10, 25, 47, 0.4) 50%, rgba(10, 25, 47, 0.1) 100%);
+    }
+
+    .project-hero__content {
+      position: relative;
+      z-index: 2;
+      color: var(--color-white);
+      max-width: 900px;
+    }
+
+    .project-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: var(--color-gold-500);
+      color: var(--color-white);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 30px;
+      margin-bottom: var(--space-4);
+      letter-spacing: 0.5px;
+    }
+
+    .project-meta-bar {
+      position: relative;
+      z-index: 10;
+      margin-top: -60px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-8);
+      box-shadow: 0 20px 40px rgba(10, 25, 47, 0.08);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      @media(min-width: 768px) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .meta-label {
+      font-size: 0.85rem;
+      color: var(--color-gray-500);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .meta-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-navy-800);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .project-content-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+      margin-top: var(--space-16);
+      @media(min-width: 992px) {
+        grid-template-columns: 3fr 1fr;
+      }
+    }
+
+    .project-text {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: var(--color-gray-700);
+    }
+
+    .project-text p {
+      margin-bottom: var(--space-6);
+    }
+
+    .project-text h3 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--color-navy-800);
+      margin: var(--space-8) 0 var(--space-4);
+    }
+
+    /* Masonry Gallery */
+    .project-gallery {
+      columns: 1;
+      column-gap: var(--space-4);
+      margin-top: var(--space-16);
+      @media(min-width: 600px) { columns: 2; }
+      @media(min-width: 992px) { columns: 3; }
+    }
+
+    .gallery-item {
+      display: inline-block;
+      width: 100%;
+      break-inside: avoid;
+      margin-bottom: var(--space-4);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      position: relative;
+      cursor: zoom-in;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 25, 47, 0.4);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    .sidebar-widget {
+      background: var(--color-gray-50);
+      padding: var(--space-6);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-gray-200);
+    }
+
+    /* Lightbox Styles */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 25, 47, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(8px);
+    }
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: var(--radius-xl);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+      transform: scale(0.95);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      object-fit: contain;
+    }
+    .lightbox.active img {
+      transform: scale(1);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+      transition: transform 0.3s, color 0.3s;
+      z-index: 10000;
+    }
+    .lightbox-close:hover {
+      transform: rotate(90deg) scale(1.1);
+      color: var(--color-gold-400);
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10000;
+      backdrop-filter: blur(4px);
+    }
+    .lightbox-nav:hover {
+      background: var(--color-gold-500);
+      transform: translateY(-50%) scale(1.1);
+    }
+    /* RTL Direction */
+    .lightbox-next { left: 20px; }
+    .lightbox-prev { right: 20px; }
+  </style>
+  <script type="module" crossorigin src="../assets/main-BXxW0iLP.js"></script>
+  <link rel="stylesheet" crossorigin href="../assets/main-Bj_9Jegq.css">
+</head>
+<body>
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="/en/" class="header__logo">
+        <span class="logo-text">First<span>Axes</span></span>
+      </a>
+      <nav class="header__nav" id="main-nav">
+        <a href="/en/" class="header__nav-link">Home</a>
+        <a href="/en/about.html" class="header__nav-link">About Us</a>
+        <a href="/en/services.html" class="header__nav-link">Services</a>
+        <a href="/en/projects.html" class="header__nav-link active">Projects</a>
+
+        <a href="/en/faq.html" class="header__nav-link">FAQ</a>
+        <a href="/en/blog.html" class="header__nav-link">Blog</a>
+        <a href="/en/contact.html" class="header__nav-link">Contact Us</a>
+      </nav>
+      <div class="header__actions">
+        <a href="/en/request-consultation.html" class="btn btn-primary btn-sm header__cta">Consultation</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- ===== PAGE HERO ===== -->
+    <section class="project-hero">
+      <div class="container">
+        <div class="project-hero__content reveal">
+          <span class="project-badge">مشاريع سكنية</span>
+          <h1 style="font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 700; margin-bottom: 1rem; line-height: 1.1;">فيلا سكنية حديثة بتصميم نيو-كلاسيك</h1>
+          <p style="font-size: 1.25rem; opacity: 0.9; max-width: 700px; margin-bottom: 2rem;">
+            تصميم وتنفيذ فيلا سكنية فاخرة في قلب الرياض تجمع بين الفخامة الكلاسيكية والحداثة العملية، مع التركيز على استغلال المساحات وتوفير بيئة مستدامة ومريحة.
+          </p>
+          
+          <nav class="breadcrumb breadcrumb--light" aria-label="Breadcrumb">
+            <ol class="breadcrumb__list">
+              <li class="breadcrumb__item"><a href="/en/">Home</a></li>
+              <li class="breadcrumb__item"><a href="/en/projects.html">Projects</a></li>
+              <li class="breadcrumb__item active" aria-current="page">فيلا سكنية حديثة</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROJECT META ===== -->
+    <div class="container">
+      <div class="project-meta-bar reveal">
+        <div class="meta-item">
+          <span class="meta-label">الموقع</span>
+          <span class="meta-value">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            الرياض، حي الملقا
+          </span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">المساحة الإجمالية</span>
+          <span class="meta-value">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            1,200 متر مربع
+          </span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">نطاق العمل</span>
+          <span class="meta-value">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h5"/><path d="M17 12h5"/><path d="m7.5 4.2 2 3.5"/><path d="m14.5 16.3 2 3.5"/><path d="m4.2 16.5 3.5-2"/><path d="m16.3 9.5 3.5-2"/><path d="m4.2 7.5 3.5 2"/><path d="m16.3 14.5 3.5 2"/><path d="m7.5 19.8 2-3.5"/><path d="m14.5 7.7 2-3.5"/><circle cx="12" cy="12" r="3"/></svg>
+            تصميم وإشراف
+          </span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">سنة الإنجاز</span>
+          <span class="meta-value">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            2023
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PROJECT DETAILS ===== -->
+    <section class="section-padding">
+      <div class="container">
+        <div class="project-content-grid">
+          
+          <!-- Main Content -->
+          <div class="project-text">
+            <h3>نظرة عامة على المشروع</h3>
+            <p>
+              تمثل هذه الفيلا السكنية نموذجاً فريداً للدمج بين الأناقة الكلاسيكية والوظائف العصرية. تم تصميم الفيلا لتلبية احتياجات عائلة سعودية تبحث عن الخصوصية التامة مع الحفاظ على مساحات مفتوحة ومشرقة للضيافة والتجمع العائلي.
+            </p>
+            <p>
+              اعتمدنا في فيرست أكسز على تحليل دقيق لمسارات الحركة والتهوية الطبيعية والإضاءة الشمسية، مما نتج عنه مبنى متناغم بيئياً ويقلل من استهلاك الطاقة الميكانيكية.
+            </p>
+
+            <h3>التحديات والحلول</h3>
+            <p>
+              كان التحدي الرئيسي في هذا المشروع هو كيفية توفير إضاءة طبيعية لكامل مساحات الدور الأرضي دون التضحية بخصوصية العائلة. قمنا بحل ذلك من خلال ابتكار فناء داخلي (Courtyard) مزود بحديقة مائية، وتوجيه جميع الواجهات الزجاجية الرئيسية نحوه بدلاً من الشارع.
+            </p>
+
+            <h3>التقنيات المستخدمة</h3>
+            <ul style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
+              <li style="background: var(--color-gold-50); color: var(--color-gold-700); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">Saudi Building Code SBC</li>
+              <li style="background: var(--color-gold-50); color: var(--color-gold-700); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">العزل الحراري المتقدم</li>
+              <li style="background: var(--color-gold-50); color: var(--color-gold-700); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">أنظمة المنزل الذكي (KNX)</li>
+              <li style="background: var(--color-gold-50); color: var(--color-gold-700); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">تكييف مخفي عالي الكفاءة</li>
+            </ul>
+          </div>
+
+          <!-- Sidebar -->
+          <aside>
+            <div class="sidebar-widget sticky" style="top: 120px;">
+              <h4 style="font-size: 1.25rem; font-weight: 700; color: var(--color-navy-800); margin-bottom: 15px;">الخدمات المقدمة في المشروع</h4>
+              <ul style="list-style: none; padding: 0;">
+                <li style="padding: 10px 0; border-bottom: 1px solid var(--color-gray-200); display: flex; align-items: center; gap: 10px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  التصميم المعماري الخارجي
+                </li>
+                <li style="padding: 10px 0; border-bottom: 1px solid var(--color-gray-200); display: flex; align-items: center; gap: 10px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  التصميم الداخلي 3D
+                </li>
+                <li style="padding: 10px 0; border-bottom: 1px solid var(--color-gray-200); display: flex; align-items: center; gap: 10px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  المخططات الإنشائية والـ MEP
+                </li>
+                <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  الإشراف على التنفيذ
+                </li>
+              </ul>
+              
+              <div style="margin-top: 30px; text-align: center;">
+                <p style="font-weight: 600; color: var(--color-navy-800); margin-bottom: 10px;">هل أعجبك هذا المشروع؟</p>
+                <a href="/en/request-consultation.html" class="btn btn-primary btn-block">ابدأ مشروعك المشابه</a>
+              </div>
+            </div>
+          </aside>
+
+        </div>
+
+        <!-- Project Gallery -->
+        <h3 style="font-size: 2rem; font-weight: 700; color: var(--color-navy-800); margin: var(--space-16) 0 var(--space-4); text-align: center;">معرض الصور</h3>
+        <p style="text-align: center; color: var(--color-gray-600); margin-bottom: var(--space-8);">استعرض التفاصيل المعمارية والجمالية للمشروع</p>
+        
+        <div class="project-gallery">
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=800&fit=crop" alt="واجهة الفيلا">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=450&fit=crop" alt="التصميم الداخلي - الصالة">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&h=600&fit=crop" alt="الفناء الداخلي">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4ea0d?w=600&h=450&fit=crop" alt="الحديقة الخارجية">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&h=800&fit=crop" alt="الدرج الداخلي">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1600607687644-b04fd5910f59?w=600&h=450&fit=crop" alt="الإضاءة الليلية">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== MORE PROJECTS ========== -->
+    <section class="section-padding" style="background: var(--color-gray-50); overflow: hidden;">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-label">اكتشف المزيد</span>
+          <h2 class="section-title">مشاريع ذات صلة</h2>
+        </div>
+        
+        <div class="swiper related-projects-slider" style="padding-bottom: 50px;">
+          <div class="swiper-wrapper">
+            <!-- Project 1 -->
+            <div class="swiper-slide">
+              <a href="/en/project-detail.html" style="text-decoration: none; color: inherit; display: block;">
+                <article class="project-card" data-category="residential">
+                  <div class="project-card__image">
+                    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&h=450&fit=crop" alt="مجمع سكني">
+                  </div>
+                  <div class="project-card__overlay">
+                    <span class="project-card__category">سكني</span>
+                    <h3 class="project-card__title">مجمع سكني فاخر</h3>
+                    <div class="project-card__location">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> الخبر
+                    </div>
+                  </div>
+                </article>
+              </a>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="swiper-slide">
+              <a href="/en/project-detail.html" style="text-decoration: none; color: inherit; display: block;">
+                <article class="project-card" data-category="commercial">
+                  <div class="project-card__image">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=450&fit=crop" alt="مركز تجاري في جدة">
+                  </div>
+                  <div class="project-card__overlay">
+                    <span class="project-card__category">تجاري</span>
+                    <h3 class="project-card__title">مركز تجاري متعدد الطوابق</h3>
+                    <div class="project-card__location">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> جدة
+                    </div>
+                  </div>
+                </article>
+              </a>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="swiper-slide">
+              <a href="/en/project-detail.html" style="text-decoration: none; color: inherit; display: block;">
+                <article class="project-card" data-category="industrial">
+                  <div class="project-card__image">
+                    <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=600&h=450&fit=crop" alt="مجمع صناعي">
+                  </div>
+                  <div class="project-card__overlay">
+                    <span class="project-card__category">صناعي</span>
+                    <h3 class="project-card__title">مجمع صناعي متكامل</h3>
+                    <div class="project-card__location">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> الجبيل
+                    </div>
+                  </div>
+                </article>
+              </a>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="swiper-slide">
+              <a href="/en/project-detail.html" style="text-decoration: none; color: inherit; display: block;">
+                <article class="project-card" data-category="government">
+                  <div class="project-card__image">
+                    <img src="https://images.unsplash.com/photo-1577495508048-b635879837f1?w=600&h=450&fit=crop" alt="مبنى حكومي">
+                  </div>
+                  <div class="project-card__overlay">
+                    <span class="project-card__category">حكومي</span>
+                    <h3 class="project-card__title">مبنى إداري حكومي</h3>
+                    <div class="project-card__location">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> الدمام
+                    </div>
+                  </div>
+                </article>
+              </a>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+        
+        <div style="text-align: center; margin-top: var(--space-4);">
+          <a href="/en/projects.html" class="btn btn-outline">عرض جميع المشاريع</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" id="footer" role="contentinfo">
+    <div class="footer__main">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <span class="logo-text">First<span>Axes</span></span>
+        </div>
+        <p>A certified engineering consultancy in Saudi Arabia. Providing comprehensive engineering solutions from planning and design to final delivery according to the highest standards.</p>
+        <div class="footer__certifications">
+          <div class="cert-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+            Saudi Building Code
+          </div>
+          <div class="cert-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            Certified Engineers
+          </div>
+        </div>
+        <div class="footer__social">
+          <a href="#" target="_blank" rel="noopener" aria-label="تويتر"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="لينكد إن"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="إنستغرام"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h3 class="footer__heading">Services</h3>
+        <div class="footer__links">
+          <a href="/en/service-detail.html">Architectural Design</a>
+          <a href="/en/service-detail.html">Structural Design</a>
+          <a href="/en/service-detail.html">MEP Design</a>
+          <a href="/en/service-detail.html">Engineering Licenses</a>
+          <a href="/en/service-detail.html">Site Supervision</a>
+          <a href="/en/service-detail.html">Project Management</a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h3 class="footer__heading">Quick Links</h3>
+        <div class="footer__links">
+          <a href="/en/about.html">About Us</a>
+          <a href="/en/projects.html">Projects</a>
+
+          <a href="/en/blog.html">Blog</a>
+          <a href="/en/faq.html">FAQ</a>
+          <a href="/en/contact.html">Contact Us</a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h3 class="footer__heading">Get in Touch</h3>
+        <div class="footer__contact-info">
+          <div class="contact-item">
+            <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="contact-text"><strong>Address</strong>الرياض، المملكة العربية السعودية</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div class="contact-text"><strong>Phone</strong><a href="tel:+9665XXXXXXXX" dir="ltr">+966 5X XXX XXXX</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+            <div class="contact-text"><strong>Email</strong><a href="mailto:info@firstaxes.com">info@firstaxes.com</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__bottom-inner">
+        <div class="footer__bottom-copy">© 2024 فيرست أكسز. All Rights Reserved.</div>
+        <div class="footer__bottom-links">
+          <a href="/en/privacy-policy.html">Privacy Policy</a>
+          <a href="/en/terms-conditions.html">Terms & Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== FLOATING CTA ========== -->
+  <div class="floating-cta" id="floating-cta">
+    <a href="https://wa.me/9665XXXXXXXX" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب" id="whatsapp-float">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize Swiper for Related Projects
+      if (typeof Swiper !== 'undefined') {
+        new Swiper('.related-projects-slider', {
+          slidesPerView: 1,
+          spaceBetween: 24,
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          breakpoints: {
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          },
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+          }
+        });
+      }
+
+      // Lightbox functionality
+      const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+      if (galleryItems.length > 0) {
+        let currentIndex = 0;
+        
+        // Create Lightbox DOM
+        const lightbox = document.createElement('div');
+        lightbox.className = 'lightbox';
+        lightbox.innerHTML = `
+          <button class="lightbox-close" aria-label="إغلاق">&times;</button>
+          <button class="lightbox-nav lightbox-next" aria-label="التالي">&#10094;</button>
+          <button class="lightbox-nav lightbox-prev" aria-label="السابق">&#10095;</button>
+          <img src="" alt="المشروع المكبر">
+        `;
+        document.body.appendChild(lightbox);
+
+        const lightboxImg = lightbox.querySelector('img');
+        const closeBtn = lightbox.querySelector('.lightbox-close');
+        const nextBtn = lightbox.querySelector('.lightbox-next');
+        const prevBtn = lightbox.querySelector('.lightbox-prev');
+
+        const updateImage = (index) => {
+          const img = galleryItems[index].querySelector('img');
+          if(img) {
+            const highResSrc = img.src.replace('w=600', 'w=1600').replace('h=450', 'h=1000').replace('h=800', 'h=1200');
+            lightboxImg.style.opacity = '0';
+            setTimeout(() => {
+              lightboxImg.src = highResSrc;
+              lightboxImg.style.opacity = '1';
+            }, 150);
+          }
+        };
+
+        // Open Lightbox
+        galleryItems.forEach((item, index) => {
+          item.addEventListener('click', () => {
+            currentIndex = index;
+            updateImage(currentIndex);
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+          });
+        });
+
+        const nextImage = () => {
+          currentIndex = (currentIndex + 1) % galleryItems.length;
+          updateImage(currentIndex);
+        };
+
+        const prevImage = () => {
+          currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+          updateImage(currentIndex);
+        };
+
+        nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
+        prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
+
+        // Close Lightbox
+        const closeLightbox = () => {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = '';
+        };
+
+        closeBtn.addEventListener('click', closeLightbox);
+        
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox) {
+            closeLightbox();
+          }
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (!lightbox.classList.contains('active')) return;
+          if (e.key === 'Escape') closeLightbox();
+          if (e.key === 'ArrowLeft') nextImage();
+          if (e.key === 'ArrowRight') prevImage();
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+
+
