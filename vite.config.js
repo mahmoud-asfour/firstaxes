@@ -14,13 +14,13 @@ function getHtmlEntries() {
     entries[name] = resolve(root, file);
   });
 
-  // Services subdirectory
-  const servicesDir = resolve(root, 'services');
-  if (fs.existsSync(servicesDir)) {
-    const serviceFiles = fs.readdirSync(servicesDir).filter(f => f.endsWith('.html'));
-    serviceFiles.forEach(file => {
-      const name = `services/${file.replace('.html', '')}`;
-      entries[name] = resolve(servicesDir, file);
+  // EN subdirectory
+  const enDir = resolve(root, 'en');
+  if (fs.existsSync(enDir)) {
+    const enFiles = fs.readdirSync(enDir).filter(f => f.endsWith('.html'));
+    enFiles.forEach(file => {
+      const name = `en/${file.replace('.html', '')}`;
+      entries[name] = resolve(enDir, file);
     });
   }
 
@@ -29,6 +29,7 @@ function getHtmlEntries() {
 
 export default defineConfig({
   root: '.',
+  base: './', // Ensures relative paths for assets on GitHub Pages
   publicDir: 'public',
   css: {
     preprocessorOptions: {
