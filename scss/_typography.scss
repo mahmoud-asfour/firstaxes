@@ -1,0 +1,221 @@
+// ============================================
+// FirstAxes — Typography System
+// ============================================
+
+// ---- Font Face Imports ----
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+// ---- Base Typography ----
+body {
+  font-family: var(--font-arabic);
+  font-weight: var(--weight-regular);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-gray-700);
+}
+
+// ---- Heading Styles ----
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-arabic);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-navy-800);
+  margin-bottom: var(--space-4);
+}
+
+h1, .h1 {
+  font-size: var(--text-hero);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+}
+
+h2, .h2 {
+  font-size: clamp(1.75rem, 3.5vw, var(--text-4xl));
+  font-weight: var(--weight-bold);
+}
+
+h3, .h3 {
+  font-size: clamp(1.375rem, 2.5vw, var(--text-3xl));
+  font-weight: var(--weight-semibold);
+}
+
+h4, .h4 {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+}
+
+h5, .h5 {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+}
+
+h6, .h6 {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+}
+
+// ---- Paragraph ----
+p {
+  margin-bottom: var(--space-4);
+  line-height: var(--leading-relaxed);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// ---- Links ----
+a {
+  color: var(--color-navy-600);
+  transition: color var(--transition-fast);
+
+  &:hover {
+    color: var(--color-gold-500);
+  }
+}
+
+// ---- Text Utilities ----
+.text-hero {
+  font-size: var(--text-hero);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+}
+
+.text-lead {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-gray-600);
+}
+
+.text-body {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+.text-small {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.text-caption {
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  color: var(--color-gray-500);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+// ---- Section Headings ----
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-gold-500);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-4);
+
+  &::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 2px;
+    background: var(--color-gold-500);
+  }
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 3.5vw, var(--text-4xl));
+  font-weight: var(--weight-bold);
+  color: var(--color-navy-800);
+  margin-bottom: var(--space-4);
+  line-height: var(--leading-tight);
+}
+
+.section-subtitle {
+  font-size: var(--text-lg);
+  color: var(--color-gray-600);
+  line-height: var(--leading-relaxed);
+  max-width: 640px;
+}
+
+// ---- Section Header Centered ----
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-16);
+
+  .section-label {
+    justify-content: center;
+
+    &::before {
+      order: -1;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--color-gold-500);
+    }
+  }
+
+  .section-subtitle {
+    margin-inline: auto;
+  }
+}
+
+// ---- English Text Override ----
+.text-en,
+[lang="en"] {
+  font-family: var(--font-english);
+  direction: ltr;
+  text-align: left;
+}
+
+// ---- Gradient Text ----
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-gold-500), var(--color-cyan-500));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-navy {
+  background: linear-gradient(135deg, var(--color-navy-700), var(--color-cyan-500));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// ---- Blockquote ----
+blockquote {
+  border-right: 4px solid var(--color-gold-500);
+  padding: var(--space-6) var(--space-8);
+  margin: var(--space-8) 0;
+  background: var(--color-gold-50);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  font-size: var(--text-lg);
+  font-style: italic;
+  color: var(--color-navy-700);
+}
+
+// ---- Strong & Emphasis ----
+strong, b {
+  font-weight: var(--weight-semibold);
+}
+
+em, i {
+  font-style: italic;
+}
+
+// ---- Mark ----
+mark {
+  background: var(--color-gold-100);
+  color: var(--color-navy-800);
+  padding: 0 var(--space-1);
+  border-radius: var(--radius-sm);
+}

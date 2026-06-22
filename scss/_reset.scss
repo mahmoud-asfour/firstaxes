@@ -1,0 +1,153 @@
+// ============================================
+// FirstAxes — Modern CSS Reset (RTL-Ready)
+// ============================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  line-height: var(--leading-normal);
+  font-family: var(--font-arabic);
+  font-size: var(--text-base);
+  color: var(--color-gray-700);
+  background-color: var(--color-white);
+  direction: rtl;
+  text-align: right;
+  overflow-x: hidden;
+}
+
+// Remove default list styles
+ul,
+ol {
+  list-style: none;
+}
+
+// Balanced text wrapping for headings
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+// Media defaults
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+// Form reset
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+// Link reset
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// Table reset
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+// Remove animations for people who've turned them off
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// Focus visible styles
+:focus-visible {
+  outline: 2px solid var(--color-cyan-500);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+// Selection
+::selection {
+  background-color: var(--color-navy-800);
+  color: var(--color-white);
+}
+
+// Scrollbar styling
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-navy-300);
+  border-radius: var(--radius-full);
+
+  &:hover {
+    background: var(--color-navy-500);
+  }
+}
+
+// Screen reader only
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  right: 0;
+  background: var(--color-navy-800);
+  color: var(--color-white);
+  padding: var(--space-3) var(--space-6);
+  z-index: var(--z-top);
+  transition: top var(--transition-fast);
+
+  &:focus {
+    top: 0;
+  }
+}

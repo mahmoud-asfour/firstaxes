@@ -1,0 +1,227 @@
+// ============================================
+// FirstAxes — Button Styles
+// ============================================
+@use '../mixins' as *;
+
+.btn {
+  @include btn-base;
+
+  // ---- Primary (Gold) ----
+  &-primary {
+    background: linear-gradient(135deg, var(--color-gold-500), var(--color-gold-400));
+    color: var(--color-navy-900);
+    border-color: var(--color-gold-500);
+
+    &:hover {
+      background: linear-gradient(135deg, var(--color-gold-400), var(--color-gold-300));
+      box-shadow: var(--shadow-gold);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  // ---- Secondary (Navy) ----
+  &-secondary {
+    background: var(--color-navy-800);
+    color: var(--color-white);
+    border-color: var(--color-navy-800);
+
+    &:hover {
+      background: var(--color-navy-700);
+      box-shadow: var(--shadow-navy);
+      transform: translateY(-2px);
+    }
+  }
+
+  // ---- Outline ----
+  &-outline {
+    background: transparent;
+    color: var(--color-navy-800);
+    border-color: var(--color-gray-300);
+
+    &:hover {
+      border-color: var(--color-gold-500);
+      color: var(--color-gold-500);
+      background: var(--color-gold-50);
+    }
+  }
+
+  &-outline-white {
+    background: transparent;
+    color: var(--color-white);
+    border-color: rgba(255,255,255,0.3);
+
+    &:hover {
+      border-color: var(--color-gold-500);
+      background: rgba(255,255,255,0.1);
+      color: var(--color-gold-400);
+    }
+  }
+
+  &-outline-gold {
+    background: transparent;
+    color: var(--color-gold-500);
+    border-color: var(--color-gold-500);
+
+    &:hover {
+      background: var(--color-gold-500);
+      color: var(--color-navy-900);
+      box-shadow: var(--shadow-gold);
+    }
+  }
+
+  // ---- Ghost ----
+  &-ghost {
+    background: transparent;
+    color: var(--color-navy-800);
+    border-color: transparent;
+    padding-inline: var(--space-4);
+
+    &:hover {
+      background: var(--color-gray-50);
+    }
+  }
+
+  // ---- Cyan ----
+  &-cyan {
+    background: var(--color-cyan-500);
+    color: var(--color-white);
+    border-color: var(--color-cyan-500);
+
+    &:hover {
+      background: var(--color-cyan-400);
+      box-shadow: var(--shadow-cyan);
+      transform: translateY(-2px);
+    }
+  }
+
+  // ---- WhatsApp ----
+  &-whatsapp {
+    background: #25D366;
+    color: var(--color-white);
+    border-color: #25D366;
+
+    &:hover {
+      background: #20BD5B;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+      transform: translateY(-2px);
+    }
+  }
+
+  // ---- White ----
+  &-white {
+    background: var(--color-white);
+    color: var(--color-navy-800);
+    border-color: var(--color-white);
+
+    &:hover {
+      background: var(--color-gray-50);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+  }
+
+  // ---- Sizes ----
+  &-sm {
+    padding: var(--space-2) var(--space-5);
+    font-size: var(--text-sm);
+    border-radius: var(--radius-md);
+  }
+
+  &-lg {
+    padding: var(--space-4) var(--space-10);
+    font-size: var(--text-lg);
+    border-radius: var(--radius-lg);
+  }
+
+  &-xl {
+    padding: var(--space-5) var(--space-12);
+    font-size: var(--text-lg);
+    border-radius: var(--radius-xl);
+  }
+
+  // ---- Full Width ----
+  &-block {
+    width: 100%;
+    justify-content: center;
+  }
+
+  // ---- Icon Button ----
+  &-icon {
+    @include flex-center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: var(--radius-md);
+
+    &.btn-sm {
+      width: 36px;
+      height: 36px;
+    }
+
+    &.btn-lg {
+      width: 52px;
+      height: 52px;
+    }
+  }
+
+  // ---- With Arrow ----
+  .btn-arrow {
+    display: inline-flex;
+    transition: transform var(--transition-fast);
+    margin-inline-start: var(--space-2);
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  &:hover .btn-arrow {
+    transform: translateX(-4px);
+  }
+
+  // ---- Loading State ----
+  &.loading {
+    pointer-events: none;
+    opacity: 0.8;
+
+    .btn-text {
+      visibility: hidden;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 2px solid currentColor;
+      border-right-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+  }
+}
+
+// ---- Button Group ----
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+
+  &-center {
+    justify-content: center;
+  }
+
+  @include sm-down {
+    flex-direction: column;
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}

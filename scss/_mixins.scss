@@ -1,0 +1,244 @@
+// ============================================
+// FirstAxes — SCSS Mixins
+// ============================================
+
+@use 'sass:math';
+@use 'variables' as *;
+
+// ---- Breakpoint Mixins ----
+@mixin sm {
+  @media (min-width: 576px) { @content; }
+}
+
+@mixin md {
+  @media (min-width: 768px) { @content; }
+}
+
+@mixin lg {
+  @media (min-width: 992px) { @content; }
+}
+
+@mixin xl {
+  @media (min-width: 1200px) { @content; }
+}
+
+@mixin xxl {
+  @media (min-width: 1400px) { @content; }
+}
+
+// Max-width (mobile-first fallbacks)
+@mixin sm-down {
+  @media (max-width: 575.98px) { @content; }
+}
+
+@mixin md-down {
+  @media (max-width: 767.98px) { @content; }
+}
+
+@mixin lg-down {
+  @media (max-width: 991.98px) { @content; }
+}
+
+@mixin xl-down {
+  @media (max-width: 1199.98px) { @content; }
+}
+
+// ---- Layout Mixins ----
+@mixin container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@mixin grid($cols: 1, $gap: $grid-gap) {
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr);
+  gap: $gap;
+}
+
+@mixin auto-grid($min: 300px, $gap: $grid-gap) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min($min, 100%), 1fr));
+  gap: $gap;
+}
+
+// ---- Card Mixin ----
+@mixin card($padding: var(--space-8)) {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  padding: $padding;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+
+  &:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-4px);
+  }
+}
+
+@mixin card-flat($padding: var(--space-8)) {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  padding: $padding;
+  border: 1px solid var(--color-gray-200);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+
+  &:hover {
+    border-color: var(--color-gold-300);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+// ---- Glass Morphism ----
+@mixin glass($bg: rgba(255,255,255,0.85), $blur: 20px) {
+  background: $bg;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+}
+
+@mixin glass-dark($bg: rgba(10,22,40,0.8), $blur: 20px) {
+  background: $bg;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+}
+
+// ---- Overlay ----
+@mixin overlay($color: rgba(10,22,40,0.6)) {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: $color;
+    z-index: 1;
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+// ---- Gradient Backgrounds ----
+@mixin gradient-navy {
+  background: linear-gradient(135deg, var(--color-navy-900) 0%, var(--color-navy-700) 100%);
+}
+
+@mixin gradient-navy-cyan {
+  background: linear-gradient(135deg, var(--color-navy-800) 0%, var(--color-cyan-600) 100%);
+}
+
+@mixin gradient-gold {
+  background: linear-gradient(135deg, var(--color-gold-500) 0%, var(--color-gold-300) 100%);
+}
+
+@mixin gradient-hero {
+  background: linear-gradient(160deg, var(--color-navy-900) 0%, var(--color-navy-700) 40%, var(--color-navy-600) 100%);
+}
+
+// ---- Truncate ----
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// ---- Aspect Ratio ----
+@mixin aspect-ratio($ratio: math.div(16, 9)) {
+  aspect-ratio: $ratio;
+  overflow: hidden;
+}
+
+// ---- Transition ----
+@mixin transition($properties...) {
+  $transitions: ();
+  @each $prop in $properties {
+    $transitions: append($transitions, $prop var(--transition-base), comma);
+  }
+  transition: $transitions;
+}
+
+// ---- Pseudo Decorators ----
+@mixin gold-line($width: 60px, $height: 3px, $position: 'bottom') {
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    width: $width;
+    height: $height;
+    background: linear-gradient(90deg, var(--color-gold-500), var(--color-gold-300));
+    border-radius: var(--radius-full);
+
+    @if $position == 'bottom' {
+      margin-top: var(--space-4);
+    } @else if $position == 'top' {
+      margin-bottom: var(--space-4);
+    }
+  }
+}
+
+// ---- Button Base ----
+@mixin btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-8);
+  font-family: var(--font-arabic);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-none);
+  border-radius: var(--radius-lg);
+  border: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-base);
+  text-decoration: none;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// ---- Responsive Visibility ----
+@mixin hide-on-mobile {
+  @include md-down {
+    display: none !important;
+  }
+}
+
+@mixin show-on-mobile {
+  display: none !important;
+  @include md-down {
+    display: block !important;
+  }
+}

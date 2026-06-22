@@ -1,0 +1,24 @@
+// ============================================
+// FirstAxes — Main SCSS Entry
+// ============================================
+
+// Foundation
+@use 'variables';
+@use 'reset';
+@use 'typography';
+@use 'grid';
+@use 'utilities';
+@use 'animations';
+
+// Layout
+@use 'layout/header';
+@use 'layout/footer';
+
+// Components
+@use 'components/buttons';
+@use 'components/cards';
+@use 'components/forms';
+@use 'components/all-components';
+
+// Pages
+@use 'pages/home';

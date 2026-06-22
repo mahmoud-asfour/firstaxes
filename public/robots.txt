@@ -1,0 +1,10 @@
+# FirstAxes - Engineering Consultancy
+# https://firstaxes.com
+
+User-agent: *
+Allow: /
+Disallow: /assets/
+Disallow: /scss/
+Disallow: /js/
+
+Sitemap: https://firstaxes.com/sitemap.xml

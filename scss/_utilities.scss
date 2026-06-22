@@ -1,0 +1,170 @@
+// ============================================
+// FirstAxes — Utility Classes
+// ============================================
+@use 'mixins' as *;
+
+// ---- Display ----
+.d-none { display: none !important; }
+.d-block { display: block !important; }
+.d-flex { display: flex !important; }
+.d-grid { display: grid !important; }
+.d-inline { display: inline !important; }
+.d-inline-block { display: inline-block !important; }
+.d-inline-flex { display: inline-flex !important; }
+
+@include md {
+  .d-md-none { display: none !important; }
+  .d-md-block { display: block !important; }
+  .d-md-flex { display: flex !important; }
+  .d-md-grid { display: grid !important; }
+}
+
+@include lg {
+  .d-lg-none { display: none !important; }
+  .d-lg-block { display: block !important; }
+  .d-lg-flex { display: flex !important; }
+}
+
+// ---- Flex ----
+.flex-row { flex-direction: row; }
+.flex-column { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-center { @include flex-center; }
+.flex-between { @include flex-between; }
+.flex-start { @include flex-start; }
+.flex-end { justify-content: flex-end; }
+.align-start { align-items: flex-start; }
+.align-center { align-items: center; }
+.align-end { align-items: flex-end; }
+.flex-1 { flex: 1; }
+.flex-shrink-0 { flex-shrink: 0; }
+
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+.gap-6 { gap: var(--space-6); }
+.gap-8 { gap: var(--space-8); }
+.gap-10 { gap: var(--space-10); }
+.gap-12 { gap: var(--space-12); }
+
+// ---- Text Alignment ----
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-start { text-align: start; }
+.text-end { text-align: end; }
+
+// ---- Text Colors ----
+.text-navy { color: var(--color-navy-800); }
+.text-gold { color: var(--color-gold-500); }
+.text-cyan { color: var(--color-cyan-500); }
+.text-white { color: var(--color-white); }
+.text-muted { color: var(--color-gray-500); }
+.text-body { color: var(--color-gray-700); }
+
+// ---- Background Colors ----
+.bg-white { background-color: var(--color-white); }
+.bg-gray { background-color: var(--color-gray-50); }
+.bg-navy { background-color: var(--color-navy-800); color: var(--color-white); }
+.bg-navy-dark { background-color: var(--color-navy-900); color: var(--color-white); }
+.bg-gold-light { background-color: var(--color-gold-50); }
+.bg-cyan-light { background-color: var(--color-cyan-50); }
+
+// ---- Spacing ----
+$spacing-values: (
+  0: 0,
+  1: var(--space-1),
+  2: var(--space-2),
+  3: var(--space-3),
+  4: var(--space-4),
+  6: var(--space-6),
+  8: var(--space-8),
+  10: var(--space-10),
+  12: var(--space-12),
+  16: var(--space-16),
+  20: var(--space-20),
+  24: var(--space-24),
+  auto: auto
+);
+
+@each $key, $val in $spacing-values {
+  .mt-#{$key} { margin-top: $val; }
+  .mb-#{$key} { margin-bottom: $val; }
+  .ms-#{$key} { margin-inline-start: $val; }
+  .me-#{$key} { margin-inline-end: $val; }
+  .mx-#{$key} { margin-inline: $val; }
+  .my-#{$key} { margin-block: $val; }
+
+  .pt-#{$key} { padding-top: $val; }
+  .pb-#{$key} { padding-bottom: $val; }
+  .ps-#{$key} { padding-inline-start: $val; }
+  .pe-#{$key} { padding-inline-end: $val; }
+  .px-#{$key} { padding-inline: $val; }
+  .py-#{$key} { padding-block: $val; }
+}
+
+// ---- Section Padding ----
+.section-padding {
+  padding-block: var(--space-section);
+}
+
+// ---- Width & Height ----
+.w-100 { width: 100%; }
+.h-100 { height: 100%; }
+.min-h-screen { min-height: 100vh; }
+
+// ---- Position ----
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+
+// ---- Overflow ----
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+
+// ---- Border Radius ----
+.rounded { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-2xl { border-radius: var(--radius-2xl); }
+.rounded-full { border-radius: var(--radius-full); }
+
+// ---- Shadow ----
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+
+// ---- Responsive Hide/Show ----
+.hide-mobile {
+  @include md-down {
+    display: none !important;
+  }
+}
+
+.show-mobile {
+  display: none !important;
+  @include md-down {
+    display: block !important;
+  }
+}
+
+.hide-desktop {
+  @include lg {
+    display: none !important;
+  }
+}
+
+// ---- Cursor ----
+.cursor-pointer { cursor: pointer; }
+
+// ---- Opacity ----
+.opacity-50 { opacity: 0.5; }
+.opacity-75 { opacity: 0.75; }
+
+// ---- Z-Index ----
+.z-10 { z-index: 10; }
+.z-20 { z-index: 20; }
+.z-50 { z-index: 50; }

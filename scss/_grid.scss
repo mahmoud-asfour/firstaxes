@@ -1,0 +1,126 @@
+// ============================================
+// FirstAxes — Grid System
+// ============================================
+@use 'mixins' as *;
+
+// ---- Container ----
+.container {
+  @include container;
+}
+
+.container-sm {
+  @include container;
+  max-width: 960px;
+}
+
+.container-lg {
+  @include container;
+  max-width: 1440px;
+}
+
+.container-fluid {
+  width: 100%;
+  padding-inline: var(--container-padding);
+}
+
+// ---- Row ----
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-6);
+
+  @include md-down {
+    gap: var(--space-4);
+  }
+}
+
+// ---- Columns ----
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    grid-column: span $i;
+  }
+}
+
+// Responsive columns
+@include sm {
+  @for $i from 1 through 12 {
+    .col-sm-#{$i} {
+      grid-column: span $i;
+    }
+  }
+}
+
+@include md {
+  @for $i from 1 through 12 {
+    .col-md-#{$i} {
+      grid-column: span $i;
+    }
+  }
+}
+
+@include lg {
+  @for $i from 1 through 12 {
+    .col-lg-#{$i} {
+      grid-column: span $i;
+    }
+  }
+}
+
+@include xl {
+  @for $i from 1 through 12 {
+    .col-xl-#{$i} {
+      grid-column: span $i;
+    }
+  }
+}
+
+// Full width on mobile by default
+@include md-down {
+  [class*="col-lg-"],
+  [class*="col-xl-"] {
+    grid-column: span 12;
+  }
+}
+
+@include sm-down {
+  [class*="col-md-"],
+  [class*="col-sm-"] {
+    grid-column: span 12;
+  }
+}
+
+// ---- Flex Grid Helpers ----
+.grid-2 {
+  @include grid(1);
+  @include md { @include grid(2); }
+}
+
+.grid-3 {
+  @include grid(1);
+  @include sm { @include grid(2); }
+  @include lg { @include grid(3); }
+}
+
+.grid-4 {
+  @include grid(1);
+  @include sm { @include grid(2); }
+  @include lg { @include grid(4); }
+}
+
+.grid-6 {
+  @include grid(2);
+  @include sm { @include grid(3); }
+  @include lg { @include grid(6); }
+}
+
+.grid-auto {
+  @include auto-grid(280px);
+}
+
+.grid-auto-sm {
+  @include auto-grid(220px);
+}
+
+.grid-auto-lg {
+  @include auto-grid(350px);
+}
