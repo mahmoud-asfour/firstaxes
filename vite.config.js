@@ -43,7 +43,6 @@ export default defineConfig({
     rollupOptions: {
       input: getHtmlEntries()
     },
-    minify: 'terser',
     cssMinify: true
   },
   server: {
